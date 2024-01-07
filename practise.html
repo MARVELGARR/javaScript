@@ -1,0 +1,90 @@
+<script>
+
+    class Node {
+        constructor(data, next = null) {
+            this.data = data;
+            this.next = next;
+        }
+    }
+
+    class LinkedList {
+        constructor(head) {
+            this.head = null;
+            this.length = 0;
+        }
+
+        append(data) {
+            const newNode = new Node(data);
+            
+            if (this.head === null) {
+                // If the list is empty, set the new node as the head
+                this.head = newNode;
+            } else {
+                // If the list is not empty, traverse to the last node and append the new node
+                let currentNode = this.head;
+                while (currentNode.next !== null) {
+                    currentNode = currentNode.next;
+                }
+                currentNode.next = newNode;
+            }
+            
+            this.length++;
+        }
+        toArray(){
+            const result = [];
+            let currentNode = this.head;
+
+            while(currentNode !== null){
+               result.push(currentNode.data);
+               currentNode = currentNode.next;
+            }
+            return result;
+        }
+        preppend(data){
+
+            const newNode = new Node(data);
+            if(this.head === null){
+                this.head = newNode                
+            }
+            else{
+                newNode.next = this.head
+                this.head = newNode
+            }
+            
+        }
+        delete(data){
+            if (this.head === null) {
+                // List is empty, nothing to delete
+                return;
+            }
+            if(this.head.data === data){
+                this.head = this.head.next;
+                return;
+            }
+
+            let current = this.head;
+            let previous = null;
+            
+            while (current !== null && current.data !== data) {
+                previous = current;
+                current = current.next;
+            }
+            if (current !== null) {
+                previous.next = current.next;
+            }
+
+        }
+    }
+
+    const list1 = new LinkedList();
+    list1.append(10)
+    list1.append(20)
+    list1.append(30)
+    list1.append(40)
+    list1.preppend(50)
+    list1.preppend(90)
+    list1.delete(40)
+    console.log( list1.toArray() );
+
+
+</script>
