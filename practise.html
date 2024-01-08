@@ -1,5 +1,59 @@
 <script>
 
+    class Node{
+        constructor(data, next){
+            this.data = data;
+            this.next = null;
+        }
+    }
 
+    class LinkedList {
+        constructor(){
+            this.head = null
+            this.length = 0; 
+        }
+
+        append(data) {
+            const newNode = new Node(data);
+
+            if (this.head === null) {
+                this.head = newNode;
+            }
+            else{
+                let current = this.head
+                while(current.next !== null){
+                    current = current.next;
+                }
+                current.next = newNode;
+            }
+            this.length++
+        }
+        prepend(data){
+            const newNode = new Node(data);
+            if(this.head == null){
+                this.head = newNode
+            }
+            else{
+                newNode.next = this.head       
+                this.head = newNode
+            }
+            this.length++
+        }
+        delete(data){
+
+            if(data === this.head.data){
+                
+            }
+        }
+    }
+
+    const list1 = new LinkedList()
+    list1.append(2)
+    list1.append(21)
+    list1.append(211)
+    list1.prepend(10)
+
+
+    console.log(list1)
 
 </script>
