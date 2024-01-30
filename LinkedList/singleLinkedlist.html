@@ -1,0 +1,29 @@
+<script>
+
+    class Node{
+        constructor(data, next){
+            this.data = data;
+            this.next = null;
+        }
+    }
+
+    class LinkedList{
+        constructor(head){
+            this.head = null;
+            this.length = 0;
+        }
+
+    }
+    const LinkedList1 = new LinkedList()
+    
+    LinkedList1.prepend(10)
+    LinkedList1.append(20)
+    LinkedList1.append(30)
+    LinkedList1.prepend(40)
+    LinkedList1.prepend(50)
+    LinkedList1.insertAt(60, 3)
+    LinkedList1.delete(20)
+    LinkedList1.toArray()
+
+
+</script>
