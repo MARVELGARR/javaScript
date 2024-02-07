@@ -1,0 +1,62 @@
+<script>
+    class Node{
+        constructor(data, next){
+            this.data = data;
+            this.next = null
+        }
+    }
+    class LinkedList{
+        constructor(head, tail, length){
+            this.head = null;
+            this.tail = null;
+            this.length = 0;
+        }
+        add(data){
+            const newNode = new Node(data)
+
+            if(this.head === null){
+                this.head = newNode
+                this.tail = newNode
+            }
+            else{
+                this.tail.next = newNode;
+                this.tail = newNode;
+            }
+            this.length++
+        }
+        palindrome(){
+            if(this.head === null && this.head.next === null){
+                return true
+            }
+
+            let stack = []
+            let current = this.head  
+
+            for(let i = 0; i < Math.floor(this.length/2); i++){
+                stack.push(current.data)
+                current = current.next
+            }
+
+            if (this.length % 2 !== 0) {
+                current = current.next;
+            }
+            while (current !== null) {
+                if (current.data !== stack.pop()) {
+                    return false; // Not a palindrome
+                }
+                current = current.next;
+            }
+
+            return true; // Palindrome
+        }
+    }
+
+
+    const LinkedList1 = new LinkedList()
+    LinkedList1.add("a")
+    LinkedList1.add("b")
+    LinkedList1.add("a")
+
+    console.log(LinkedList1)
+    console.log(LinkedList1.palindrome())
+</script>
