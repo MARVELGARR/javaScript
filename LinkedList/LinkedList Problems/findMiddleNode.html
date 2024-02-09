@@ -1,3 +1,5 @@
+
+
 <script>
     class Node{
         constructor(data, next){
@@ -24,32 +26,28 @@
             }
             this.length++
         }
-        palindrome(){
-
-            if(this.head === null && this.head.next === null){
-                return true;
-            }
-            let stack = [];
-            let current = this.head
-            for( let i = 0; i < Math.floor(this.length/2); i++){
-                stack.push(current.data);
-                current = current.next
-            }
-
-            if(this.length % 2 !== 0){
-                current = current.next
-            }
+        midNode(){
+            let length = 0
+            let current = this.head;
             while(current !== null){
-                if( stack.pop() !== current.data){
-                    return false
-                } 
-                current = current.next
+                length++
+                current = current.next;
             }
-
-            return true
-
-
+            for(let i = 0; i < Math.floor(length/2); i++){
+                this.head = this.head.next
+            }
+            return this.head
         }
+        twoPointer() {
+            let slow = this.head;
+            let fast = this.head;
+            while (fast && fast.next) {
+                slow = slow.next;
+                fast = fast.next.next;
+            }
+            return slow;
+        }
+            
     }
 
 
@@ -57,7 +55,9 @@
     LinkedList1.add("a")
     LinkedList1.add("b")
     LinkedList1.add("c")
+    LinkedList1.add("d")
 
-    console.log(LinkedList1)
-    console.log(LinkedList1.palindrome())
+    console.log(LinkedList1)    
+    console.log(LinkedList1.midNode())    
+    console.log(LinkedList1.twoPointer().data)    
 </script>
