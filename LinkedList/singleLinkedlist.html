@@ -31,11 +31,12 @@
                 const newNode = new Node(data);
 
                 let current = this.head;
-
                 while(current.next !== null){
                     current = current.next
                 }
+
                 current.next = newNode;
+                
             }
 
             this.length++
@@ -90,7 +91,7 @@
             let current = this.head;
             let previous = null
 
-            while(current.next !== null){
+            while(current !== null){
                 previous = current
                 current = current.next
             }
@@ -185,12 +186,55 @@
         toArray(){
             const array = []
             let current = this.head
-            for(let i = 0; i < this.length; i++){
+            while(current !== null){
                 array.push(current.data)
                 current = current.next
             }
             return console.log(array)
         }
+        sum(head = this.head){
+
+            if (head === null) {
+            return 0;
+        }
+            return head.data + this.sum(head.next);
+        }
+        reverse(){
+
+            let current = this.head;
+            let next = null
+            let previous = null;
+
+            while(current != null){
+                
+                next = current.next;
+                current.next = previous;
+
+                previous = current;
+                current = next;
+
+            }
+            this.head = previous
+
+        }
+        reverse2(current = this.head, previous = null) {
+            if (current === null) {
+                // If the current node is null, the end of the list is reached
+                // Set the head of the list to the previous node, which is now the last node (new head)
+                this.head = previous;
+                return;
+            }
+
+            // Store the next node temporarily
+            let next = current.next;
+
+            // Reverse the link of the current node
+            current.next = previous;
+
+            // Recursively call reverse2 with next node as current and current node as previous
+            this.reverse2(next, current);
+        }
+        
         
     }
     const LinkedList1 = new LinkedList()
@@ -199,10 +243,13 @@
     LinkedList1.append(10)
     LinkedList1.prepend(20)
     LinkedList1.prepend(30)
-
     LinkedList1.deleteAt(2)
     LinkedList1.delete(30)
-    LinkedList1.toArray(20)
+    LinkedList1.reverse();
+    LinkedList1.toArray()
+    LinkedList1.reverse2()
+    console.log(LinkedList1.sum())
+
     console.log(LinkedList1)
 
 

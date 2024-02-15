@@ -26,19 +26,7 @@
             }
             this.length++
         }
-        midNode(){
-            let length = 0
-            let current = this.head;
-            while(current !== null){
-                length++
-                current = current.next;
-            }
-            for(let i = 0; i < Math.floor(length/2); i++){
-                this.head = this.head.next
-            }
-            return this.head
-        }
-        twoPointer() {
+        midPoint() {
             let slow = this.head;
             let fast = this.head;
             while (fast && fast.next) {
@@ -46,6 +34,25 @@
                 fast = fast.next.next;
             }
             return slow;
+        }
+        isCycle(){
+            if(!this.head || !this.head.next){
+                return false;
+            }
+
+            let slow = this.head
+            let fast = this.head.next
+
+            while(fast && fast.next){
+                if(slow === fast ){
+                    return true
+                }
+                slow = slow.next
+                fast = fast.next.next
+            }
+
+            return false
+
         }
             
     }
@@ -57,7 +64,7 @@
     LinkedList1.add("c")
     LinkedList1.add("d")
 
-    console.log(LinkedList1)    
-    console.log(LinkedList1.midNode())    
-    console.log(LinkedList1.twoPointer().data)    
+    console.log(LinkedList1)       
+    console.log(LinkedList1.midPoint())    
+    console.log(LinkedList1.isCycle())    
 </script>
