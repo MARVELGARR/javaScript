@@ -50,14 +50,54 @@
 
 
         }
+        fasterPalindrome(){
+            let slow = this.head
+            let fast = this.head
+
+            while(fast && fast.next){
+                slow = slow.next
+                fast = fast.next.next
+            }
+            fast = this.head
+
+            slow = this.reverse(slow)
+            
+            while(slow){
+                if(fast.data !== slow.data){
+                    return false
+                }
+                slow = slow.next
+                fast = fast.next
+            }                                                                                                                                                                                                                                                                              
+            return true
+
+        }
+        reverse(head){
+            let next = null
+            let prev = null
+            let current = head
+
+            while(current){
+                next = current.next
+                current.next = prev
+                prev = current
+                current = next
+            }
+            return prev;
+
+
+        }
     }
 
 
+
     const LinkedList1 = new LinkedList()
-    LinkedList1.add("a")
-    LinkedList1.add("b")
-    LinkedList1.add("c")
+    LinkedList1.add(1)
+    LinkedList1.add(2)
+    LinkedList1.add(2)
+    LinkedList1.add(1)
+
 
     console.log(LinkedList1)
-    console.log(LinkedList1.palindrome())
+    console.log(LinkedList1.fasterPalindrome())
 </script>
