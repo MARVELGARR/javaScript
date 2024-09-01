@@ -1,0 +1,21 @@
+
+
+
+<script>
+
+    const frequency = (array) =>{
+        
+        const freqMap = new Map()
+        for(let num of array){
+            if(freqMap.has(num)){
+                freqMap.set(num, freqMap.get(num) +1)
+            }
+            else{
+                freqMap.set(num, 1)
+            }
+        }
+        return Object.fromEntries(freqMap)
+    }
+
+    console.log(frequency([1,2,2,2,3,3,4,4,5,4,6,6,7,6,]))
+</script>
